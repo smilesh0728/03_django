@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<header class="masthead" style="background-image: url('/static/img/하늘.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-11 mx-auto">
+                <div class="site-heading">
+                    <h1>Hello HAPPY Blog</h1>
+                    <span class="subheading">list</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<h1>Blog List</h1>
+
+<br><a href="{% url 'board:add' %}" class="btn btn-primary btn-sm float-right" role="button" aria-pressed="true">새로 만들기</a>
+
+
+{% load widget_tweaks %}
+{% for post in posts %}
+
+    <h3> <a href = '{{ post.get_absolute_url }}'>{{ post.title }} </a></h3>
+    {{ post.modify_dt|date:"N d, Y" }}
+    <p>{{ post.description}}</p>
+{% endfor %}
+
+    <br>
+    <div>
+            <span>
+                {% if page_obj.has_previous %}
+                    <a href="?page= {{ page_obj.previous_page_number}}">이전페이지</a>
+                {% endif %}
+
+                page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+                {% if page_obj.has_next %}
+                    <a href="?page= {{ page_obj.next_page_number}}">다음페이지 </a>
+                {% endif %}
+            </span>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--base.html을 상속받음-->
+{% extends "base.html" %}
+
+<!--타이틀-->
+{% block title %} register_done.html {% endblock %}
+
+<!--body의 헤더 영역 : nav 바 포함-->
+{% block content %}
+
+    <h1>Registration Completed Successfully</h1>
+    <br>
+    <p>Thank you for registering.</p>
+
+    <p class = "font-italic"><a herf="{% url 'login' %}">Log in</a></p>
+{% endblock %}

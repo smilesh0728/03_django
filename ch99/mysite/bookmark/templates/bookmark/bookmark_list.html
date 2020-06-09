@@ -1,0 +1,68 @@
+<!--저는 베이스 부모를 상속받았어요-->
+{% extends 'base.html' %}
+
+<!--static 폴더에 있는 리소스 로드-->
+{% load static %}
+<!--타이틀-->
+{% block title %}  Django Bookmark List {% endblock %}
+<!--바디 헤더 영역: 네비 바-->
+{% block header %}
+<!-- Page Header -->
+  <header class="masthead" style="background-image: url('{% static 'img/happy.jpg' %}')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-11 mx-auto">
+          <div class="site-heading">
+            <h1>Hello HAPPY Blog</h1>
+            <span class="subheading">I LOVE U</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+<!--바디 컨텐트 영역: 본문-->
+{% block content %}
+<!-- style="background-color : skyblue"-->
+<div id="content"= style="background-color : skyblue" >
+    <h3>Bookmark List</h3>
+        <!--ul: unordered list, 순서가 없는 리스트 -->
+        <!--Ol: ordered list, 순서가 있는 리스트 -->
+        <ol>
+            {% for bookmark in object_list %}
+                 <li><a href="{% url 'bookmark:detail' bookmark.id %}">{{ bookmark }}</a><li>
+            {% endfor %}
+        </ol><a href="{% url 'bookmark:add'%}" class="btn btn-primary btn-sm float-right" role="button" aria-pressed="true">새로 만들기</a>
+</div>
+{% endblock %}
+<!--바디 풋터 영역-->
+
+{% block footer %}
+
+
+{% endblock %}
+
+{% block extra-script %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+<!--저는 베이스 부모를 상속받았어요-->
+{% extends 'base.html' %}
+
+<!--static 폴더에 있는 리소스 로드-->
+{% load static %}
+<!--타이틀-->
+{% block title %} django Bookmark Detail {% endblock %}
+<!--바디 헤더 영역: 네비 바-->
+{% block header %}
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{% static 'img/happy.jpg' %}')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-11 mx-auto">
+                <div class="site-heading">
+                    <h1>Hello HAPPY Blog</h1>
+                    <span class="subheading">I LOVE U</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+<!--바디 컨텐트 영역: 본문-->
+{% block content %}
+
+<div id="content">
+
+    <h1>{{ object.title }}</h1>
+
+    <a href="{% url 'bookmark:update' bookmark.id %}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">수정</a>
+    <a href="{% url 'bookmark:delete' bookmark.id %}" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">삭제</a>
+    <ul>
+        <li>URL:<a href="{{ object.url }}">{{ object.url }}</a></li>
+    </ul>
+    <ol>
+        <!--오브젝트_리스트 안에 있는 데이터를 북마크라는 변수에 담는 것을 순차적으로 반복> -->
+
+        {% for bookmark in object_list %}
+
+        <!--담은 내용(북마크)울 하이퍼링크(a href)와 함께 출력> -->
+        <li>URL<a href="{% url 'detail' object.url %}">{{ object.url }}</a></li>
+        {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}
+
+<!--바디 풋터 영역-->
+
+{% block footer %}
+
+
+{% endblock %}
+
+{% block extra-script %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
